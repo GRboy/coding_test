@@ -15,6 +15,7 @@ for _ in range(d):
     a,b,c = map(int,input().split())
     graph[a].append((b,c))
 
+#이미 한번 heapq에서 빠진 node는 더 볼필요가 없다. 그게 그 노드의 최소값
 def dijstra_heaq(start):
     h = []
     distance[start] = 0
