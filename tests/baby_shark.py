@@ -33,7 +33,7 @@ def bfs(x,y):
 def find_fish(dis):
     min = INF
     min_x,min_y = 0,0
-    global pos_x,pos_y
+
     for x in range(n):
         for y in range(n):
             if dis[x][y] != INF and table[x][y] > 0 and shark_size > table[x][y]:
@@ -43,10 +43,8 @@ def find_fish(dis):
     if min == INF:
         return False
     else:
-        table[min_x][min_y] = 0
-        pos_x,pos_y = min_x,min_y
-        print(pos_x,pos_y,min)
-        return min
+        print(min,min_x,min_y)
+        return min,min_x,min_y
 answer = 0
 ate = 0
 while True:
@@ -54,13 +52,13 @@ while True:
     if ret == False:
         break
     else:
-        answer += ret
+        table[ret[1]][ret[2]] = 0
+        pos_x, pos_y = ret[1], ret[2]
+        answer += ret[0]
         ate +=1
-        if ate <= shark_size:
+        if ate == shark_size:
             shark_size+=1
             ate = 0
-
-
 print(answer)
 
 
